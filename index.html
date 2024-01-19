@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Inicio de Sesión</h2>
+    <form action="login.php" method="post">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <label for="tipo_usuario">Tipo de Usuario:</label>
+        <select id="tipo_usuario" name="tipo_usuario">
+            <option value="usuario">Usuario</option>
+            <option value="administrador">Administrador</option>
+            <option value="mantenimiento">Mantenimiento</option>
+        </select>
+
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    <p>¿No tienes una cuenta? <a href="registro.html">Registrarse</a></p>
+
+    <script>
+        // Agrega este script para redireccionar después del inicio de sesión
+        document.querySelector('form').addEventListener('submit', function (event) {
+            var tipoUsuario = document.getElementById('tipo_usuario').value;
+            if (tipoUsuario === 'usuario') {
+                window.location.href = 'Usuario.html'; // Cambia 'dashboard_usuario.html' al nombre de tu página para usuarios
+            } else if (tipoUsuario === 'administrador') {
+                window.location.href = 'dashboard_admin.html'; // Cambia 'dashboard_admin.html' al nombre de tu página para administradores
+            } else if (tipoUsuario === 'mantenimiento') {
+                window.location.href = 'dashboard_mantenimiento.html'; // Cambia 'dashboard_mantenimiento.html' al nombre de tu página para mantenimiento
+            }
+
+            event.preventDefault(); // Evitar que el formulario se envíe normalmente
+        });
+    </script>
+</body>
+</html>
